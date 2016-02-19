@@ -1,0 +1,33 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="../../dist/infinite-scroll.js"></script>
+  <title>Super Calculator</title>
+</head>
+<body class="ng-cloak" ng-app="myApp">
+  <div id="ctrl" ng-controller="MyController as ctrl"
+                 infinite-scroll="ctrl.load(5)">
+    <div id="name">
+      {{ctrl.name}}
+    </div>
+    <ul ng-repeat="item in ctrl.items">
+      <li>{{$index}}</li>
+    </ul>
+  </div>
+</body>
+<script>
+  var MyController = function(){
+    this.items = [];
+    this.name = "test";
+    var ctrl = this;
+    this.load = function(count){
+      [].push.apply(ctrl.items, new Array(5));
+    };
+  };
+
+  //angular.module('myApp')
+  angular.module('myApp', ['infinite-scroll'])
+         .controller("MyController", MyController);
+</script>
+</html>
