@@ -1,24 +1,23 @@
-//(function(){
+(function(){
 
   var infiniteScroll = function(){
     link = function(scope, element, attrs){
-      console.log(this);
       console.log(arguments);
-      //this.infiniteScroll();
+      console.log(attrs.infiniteScroll);
+      scope.infiniteScroll()
+      //attrs.infiniteScroll(5);
     };
 
-    var directive = {
-      //scope: {
-      ////  infiniteScroll: "&"
-      //},
+    return {
+      scope: {
+        infiniteScroll: "&"
+      },
       //restrict: "E",
       link: link
     };
-
-    return directive;
   };
 
 
   angular.module('infinite-scroll', [])
          .directive('infiniteScroll', infiniteScroll);
-//})()
+})()

@@ -6,28 +6,32 @@
   <title>Super Calculator</title>
 </head>
 <body class="ng-cloak" ng-app="myApp">
-  <div id="ctrl" ng-controller="MyController as ctrl"
-                 infinite-scroll="ctrl.load(5)">
-    <div id="name">
-      {{ctrl.name}}
-    </div>
-    <ul ng-repeat="item in ctrl.items">
-      <li>{{$index}}</li>
-    </ul>
-  </div>
-</body>
-<script>
-  var MyController = function(){
-    this.items = [];
-    this.name = "test";
-    var ctrl = this;
-    this.load = function(count){
-      [].push.apply(ctrl.items, new Array(5));
-    };
-  };
 
-  //angular.module('myApp')
-  angular.module('myApp', ['infinite-scroll'])
-         .controller("MyController", MyController);
-</script>
+  <div ng-controller='MyController'>
+    <div class="scroll">
+      <ul infinite-scroll='load(10)'
+           infinite-scroll-distance='1'
+           infinite-scroll-parent>
+      <li ng-repeat='image in images track by $index'>{{image}} </li>
+      </ul>
+    </div>
+  </div>
+
+  <script>
+  var myApp = angular.module('myApp', ['infinite-scroll']);
+
+  myApp.controller('MyController', function($scope) {
+    $scope.images = [];
+
+    $scope.load = function(count) {
+      console.log('loadmore')
+      var last = $scope.images[$scope.images.length - 1];
+      for(var i = 1; i <= count; i++) {
+        $scope.images.push((last || 0) + i);
+      }
+    };
+  });
+  </script>
+
+</body>
 </html>
