@@ -5,13 +5,18 @@
   <script src="../../dist/infinite-scroll.js"></script>
   <title>Super Calculator</title>
 </head>
+<style>
+html, body, ul { margin: 0; padding: 0;}
+li { height: 20px; }
+</style>
 <body class="ng-cloak" ng-app="myApp">
 
   <div ng-controller='MyController'>
     <div class="scroll">
-      <ul infinite-scroll='load(10)'
-           infinite-scroll-distance='1'
-           infinite-scroll-parent>
+      <ul id="list"
+          infinite-scroll
+          load-more='load()'
+          scroll-distance='distance'>
       <li ng-repeat='image in images track by $index'>{{image}} </li>
       </ul>
     </div>
@@ -22,15 +27,30 @@
 
   myApp.controller('MyController', function($scope) {
     $scope.images = [];
+    $scope.distance = parameter("dist");
 
-    $scope.load = function(count) {
-      console.log('loadmore')
+    $scope.load = function() {
       var last = $scope.images[$scope.images.length - 1];
-      for(var i = 1; i <= count; i++) {
-        $scope.images.push((last || 0) + i);
+      var total = parameter("total");
+      for(var i = 1; i <= parameter("count"); i++) {
+        if(!total || $scope.images.length < total){
+          $scope.images.push((last || 0) + i);
+        }
       }
     };
+
+
   });
+
+  function parameter(name, url) {
+      if (!url) url = window.location.href;
+      name = name.replace(/[\[\]]/g, "\\$&");
+      var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+          results = regex.exec(url);
+      if (!results) return null;
+      if (!results[2]) return '';
+      return decodeURIComponent(results[2].replace(/\+/g, " "));
+  }
   </script>
 
 </body>
