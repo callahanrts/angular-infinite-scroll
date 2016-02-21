@@ -1,12 +1,12 @@
 {
-  "name": "ng-infinite-scroll",
+  "name": "angular-infinite-scroll",
   "version": "0.0.1",
   "description": "Infinite scrolling for AngularJS",
   "repository": {},
   "main": "dist/infinite-scroll.js",
   "browser": "dist/infinite-scroll.js",
   "scripts": {
-    "test": "grunt test:protractor-local"
+    "test": ""
   },
   "devDependencies": {
     "protractor": "1.4.0"

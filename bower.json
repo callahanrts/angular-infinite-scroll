@@ -1,0 +1,25 @@
+{
+  "name": "angular-infinite-scroll",
+  "description": "Infinite scrolling for AngularJS",
+  "main": "dist/infinite-scroll.js",
+  "authors": [
+    "Cody <callahanrts@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "infinite",
+    "scroll"
+  ],
+  "homepage": "https://github.com/callahanrts/angular-infinite-scroll",
+  "moduleType": [
+    "globals"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
