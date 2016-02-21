@@ -1,5 +1,3 @@
-// ///////////////////////////////////////////
-// Window.js
 
 var load = function(options){
   options = options || {}

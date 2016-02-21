@@ -2,6 +2,7 @@
   var InfiniteScrollController = function($scope, $q, $timeout){
     this.elementHeight = 0;
     this.container = window; // default container to window
+    this.loading = false;
     var vm = this;
 
     var scrollTop = function(){
@@ -21,15 +22,20 @@
       return scrollHeight <= el.clientHeight;
     };
 
+    var scrollPastPercentage = function(el, percentage){
+      return scrollTop() + viewportHeight(el) > scrollHeight(el) - viewportHeight(el) * (percentage / 100);
+    };
+
     this.loadOnScroll = function(el, dist){
       angular.element(vm.container).bind("scroll", function(){
-        if(scrollTop() + viewportHeight(el) > scrollHeight(el) - viewportHeight(el) * (dist / 100)){
+        if(scrollPastPercentage(el, dist) && !vm.loading){
           vm.loadData(el);
         }
       });
     };
 
     this.loadData = function(el){
+      vm.loading = true;
       $q.when($scope.loadMore(), function(){
         $timeout(function(){
           var height = el.clientHeight;
@@ -39,6 +45,7 @@
             vm.elementHeight = height;
             vm.loadData(el);
           }
+          vm.loading = false;
         }, 0)
       });
     };
