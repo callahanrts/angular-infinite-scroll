@@ -4,15 +4,6 @@
     this.container = window; // default container to window
     var vm = this;
 
-    this.loadOnScroll = function(el, dist){
-      console.log(vm.container, el, dist)
-      angular.element(vm.container).bind("scroll", function(){
-        if(scrollTop() + viewportHeight(el) > scrollHeight(el) - viewportHeight(el) * (dist / 100)){
-          vm.loadData(el);
-        }
-      });
-    };
-
     var scrollTop = function(){
       return vm.container == window ? document.body.scrollTop : vm.container.scrollTop;
     };
@@ -28,6 +19,14 @@
     var ableToScroll = function(el){
       var scrollHeight = (vm.container == window ? window.innerHeight : vm.container.scrollHeight)
       return scrollHeight <= el.clientHeight;
+    };
+
+    this.loadOnScroll = function(el, dist){
+      angular.element(vm.container).bind("scroll", function(){
+        if(scrollTop() + viewportHeight(el) > scrollHeight(el) - viewportHeight(el) * (dist / 100)){
+          vm.loadData(el);
+        }
+      });
     };
 
     this.loadData = function(el){
@@ -51,9 +50,9 @@
   var infiniteScroll = function(){
     link = function(scope, el, attrs, ctrl){
       // Set Defaults
-      dist = parseInt(scope.scrollDistance);
-      if(!angular.isNumber(dist)){
-        scope.scrollDistance = 10;
+      var dist = parseInt(scope.scrollDistance);
+      if(!angular.isNumber(dist) || isNaN(dist)){
+        dist = 10;
       }
 
       // Get Data
