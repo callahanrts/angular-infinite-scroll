@@ -7,21 +7,23 @@
 <style>
 * { margin: 0; padding: 0;}
 li { height: 20px; }
+#container{ height: 400px; overflow: auto; }
 </style>
 <body class="ng-cloak" ng-app="myApp">
 
-  <div ng-controller='MyController'>
-    <div class="parent">
+  <div id="container" ng-controller='MyController'>
 
-      <ul id="list"
+    <div>
+      <div id="list"
           infinite-scroll
           load-more='load()'
-          scroll-distance='distance'>
+          scroll-distance='distance'
+          scroll-container='container'>
 
-        <li ng-repeat='item in items track by $index'>{{item}}</li>
-      </ul>
-
+        <div ng-repeat='item in items track by $index'>{{item}}</div>
+      </div>
     </div>
+
   </div>
 
   <script>
@@ -30,6 +32,7 @@ li { height: 20px; }
   myApp.controller('MyController', function($scope) {
     $scope.items = [];
     $scope.distance = parameter("dist");
+    $scope.container = "container";
 
     $scope.load = function() {
       var last = $scope.items[$scope.items.length - 1];
@@ -40,7 +43,6 @@ li { height: 20px; }
         }
       }
     };
-
 
   });
 
