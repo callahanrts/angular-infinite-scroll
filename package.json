@@ -6,9 +6,15 @@
   "main": "dist/infinite-scroll.js",
   "browser": "dist/infinite-scroll.js",
   "scripts": {
-    "test": ""
+    "test": "",
+    "init": "./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
+    "uglify": "node_modules/uglify-js/bin/uglifyjs dist/infinite-scroll.js -c -m --comments -o dist/infinite-scroll.min.js"
   },
   "devDependencies": {
-    "protractor": "1.4.0"
+    "grunt": "^0.4.5",
+    "grunt-protractor-runner": "^3.0.0",
+    "grunt-protractor-webdriver": "^0.2.5",
+    "protractor": "1.4.0",
+    "uglify-js": "^2.6.1"
   }
 }

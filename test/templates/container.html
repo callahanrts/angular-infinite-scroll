@@ -35,11 +35,11 @@ li { height: 20px; }
     $scope.container = "container";
 
     $scope.load = function() {
-      var last = $scope.items[$scope.items.length - 1];
+      var last = 0;
       var total = parameter("total");
       for(var i = 1; i <= parameter("count"); i++) {
         if(!total || $scope.items.length < total){
-          $scope.items.push((last || 0) + i);
+          $scope.items.push(last + i);
         }
       }
     };
