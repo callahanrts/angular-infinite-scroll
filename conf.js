@@ -4,9 +4,9 @@ exports.config = {
   framework: 'jasmine',
   seleniumAddress: 'http://localhost:4444/wd/hub',
   specs: ['test/*.js'],
-  //capabilities: {
-  //    'browserName': 'firefox' // or 'safari'
-  //},
+  capabilities: {
+      'browserName': 'firefox' // or 'safari'
+  },
   onPrepare: function() {
     // By default, Protractor use data:text/html,<html></html> as resetUrl, but
     // location.replace (see http://git.io/tvdSIQ) from the data: to the file: protocol is not allowed
