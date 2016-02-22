@@ -6,6 +6,7 @@ before_install:
   - npm install -g grunt-cli
 install:
   - npm install
+  - webdriver-manager update --standalone --chrome --firefox
   - npm run init
 before_script:
   - "export DISPLAY=:99.0"
