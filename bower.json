@@ -1,5 +1,5 @@
 {
-  "name": "angular-infinite-scroll",
+  "name": "angular-infinite-scrolling",
   "description": "Infinite scrolling for AngularJS",
   "main": "dist/infinite-scroll.js",
   "authors": [
@@ -11,7 +11,7 @@
     "infinite",
     "scroll"
   ],
-  "homepage": "https://github.com/callahanrts/angular-infinite-scroll",
+  "homepage": "https://github.com/callahanrts/angular-infinite-scrolling",
   "moduleType": [
     "globals"
   ],
