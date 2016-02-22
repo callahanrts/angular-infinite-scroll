@@ -43,7 +43,7 @@
 
     this.loadData = function(el){
       vm.loading = true;
-      $q.when($scope.loadMore(), function(){
+      $q.when($scope.infiniteScroll(), function(){
         $timeout(function(){
           var height = el.clientHeight;
           // Load more data if the window is inable to scroll and there is more
@@ -79,7 +79,7 @@
 
     return {
       scope: {
-        loadMore: "&",
+        infiniteScroll: "&",
         scrollDistance: "=",
         scrollContainer: "="
       },

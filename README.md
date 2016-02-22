@@ -15,13 +15,10 @@
 ## Getting Started
 #### Directive Attributes
 ```bash
-# Required - initialize infinite scrolling
+# Required - initialize infinite scrolling with a function to load more data
 infinite-scroll
 
-# Required - a function to load more data
-load-more
-
-# Optional - Percentage of container height. load-more will be called
+# Optional - Percentage of container height. infinite-scroll will be called
 #            when scrolling is this distance from the bottom.
 #            Default: 20
 scroll-distance
@@ -36,8 +33,7 @@ scroll-container
 <body ng-app="myApp">
   <div id="container" ng-controller='MyController'>
     <div id="list"
-         infinite-scroll
-         load-more='load()'
+         infinite-scroll='load()'
          scroll-distance='20'
          scroll-container='container'>
 
@@ -67,8 +63,8 @@ myApp.controller('MyController', function($scope) {
 ```
 
 ## Promise Support
-If a promise is returned from the `load-more` method, angular-infinite-scrolling will wait
-until the promise returns to call the `load-more` method again.
+If a promise is returned from the `infinite-scroll` method, angular-infinite-scrolling will wait
+until the promise returns to call the `infinite-scroll` method again.
 ```javascript
 var myApp = angular.module('myApp', ['infinite-scroll']);
 

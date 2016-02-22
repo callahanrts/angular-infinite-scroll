@@ -14,8 +14,7 @@ li { height: 20px; }
     <div class="parent">
 
       <ul id="list"
-          infinite-scroll
-          load-more='load()'
+          infinite-scroll='load()'
           scroll-distance='distance'>
 
         <li ng-repeat='item in items track by $index'>{{item}}</li>
