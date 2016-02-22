@@ -1,4 +1,6 @@
 # Angular Infinite Scrolling
+[![Build Status](https://travis-ci.org/callahanrts/angular-infinite-scrolling.svg?branch=master)](https://travis-ci.org/callahanrts/angular-infinite-scrolling)
+
 [Demos](http://codycallahan.com/angular-infinite-scrolling)
 
 ## Installation
@@ -19,8 +21,8 @@ infinite-scroll
 # Required - a function to load more data
 load-more
 
-# Optional - Percentage of container height. load-more will be called when
-#            scrolling is this distance from the bottom.
+# Optional - Percentage of container height. load-more will be called
+#            when scrolling is this distance from the bottom.
 #            Default: 20
 scroll-distance
 
