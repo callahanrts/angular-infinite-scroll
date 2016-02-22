@@ -1,12 +1,13 @@
 {
   "name": "angular-infinite-scroll",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Infinite scrolling for AngularJS",
   "repository": {},
   "main": "dist/infinite-scroll.js",
   "browser": "dist/infinite-scroll.js",
   "scripts": {
     "test": "grunt test",
+    "tag": "./scripts/tag.sh",
     "init": "./node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update",
     "uglify": "node_modules/uglify-js/bin/uglifyjs dist/infinite-scroll.js -c -m --comments -o dist/infinite-scroll.min.js"
   },
