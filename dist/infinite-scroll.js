@@ -1,34 +1,41 @@
 (function(){
   var InfiniteScrollController = function($scope, $q, $timeout){
     this.elementHeight = 0;
-    this.container = window; // default container to window
+    this.container = document.body; // default container to body
     this.loading = false;
     var vm = this;
 
+    $scope.$on('$destroy', function(){
+      unscroll();
+    });
+
     var scrollTop = function(){
-      return vm.container == window ? document.body.scrollTop : vm.container.scrollTop;
+      return vm.container.scrollTop;
     };
 
-    var scrollHeight = function(el){
-      return el.scrollHeight;
+    var scrollHeight = function(){
+      return vm.container.scrollHeight;
     };
 
     var viewportHeight = function(){
-      return vm.container == window ? screen.height : vm.container.clientHeight;
+      return Math.min(screen.height, Math.max(vm.container.clientHeight, screen.height));
     };
 
-    var ableToScroll = function(el){
-      var scrollHeight = (vm.container == window ? window.innerHeight : vm.container.scrollHeight)
-      return scrollHeight <= el.clientHeight;
+    var ableToScroll = function(){
+      return vm.container.scrollHeight > viewportHeight();
     };
 
-    var scrollPastPercentage = function(el, percentage){
-      return scrollTop() + viewportHeight(el) > scrollHeight(el) - viewportHeight(el) * (percentage / 100);
+    var scrollPastPercentage = function(percentage){
+      return scrollTop() + viewportHeight() > scrollHeight() - viewportHeight() * (percentage / 100);
+    };
+
+    var unscroll = function(){
+      angular.element(vm.container == document.body ? window : vm.container).unbind('scroll')
     };
 
     this.loadOnScroll = function(el, dist){
-      angular.element(vm.container).bind("scroll", function(){
-        if(scrollPastPercentage(el, dist) && !vm.loading){
+      angular.element(vm.container == document.body ? window : vm.container).bind("scroll", function(){
+        if(scrollPastPercentage(dist) && !vm.loading){
           vm.loadData(el);
         }
       });

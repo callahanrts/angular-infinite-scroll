@@ -130,6 +130,7 @@ describe('#InfiniteScroll', function(){
 
     it('should load more items until the page can scroll', function(){
       load({ container: "window", count: 10 });
+      //browser.pause();
       windowCanScroll();
     });
 
@@ -161,8 +162,9 @@ describe('#InfiniteScroll', function(){
 
       describe('when the scroll distance is 50%\n', function(){
         it('should load moare data', function(){
+          //browser.pause()
           load({ container: "window", count: 100, total: 1000, scroll: 50 });
-          scrollBody(50).then(function(){
+          scrollBody(38).then(function(){
             lengthIs(200);
           });
         });
