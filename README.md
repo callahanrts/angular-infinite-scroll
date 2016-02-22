@@ -49,23 +49,21 @@ scroll-container
 ```
 ```javascript
 var myApp = angular.module('myApp', ['infinite-scroll']);
-
 myApp.controller('MyController', function($scope) {
   $scope.items = [];
-  $scope.container = "container";
+  $scope.distance = 80;
+  $scope.container = 'container';
+  $scope.total = 200;
+  $scope.count = 20;
 
   $scope.load = function() {
-    var last = 0;
-    var total = 1000;
-
-    for(var i = 1; i <= 20; i++) {
-      if($scope.items.length < total){
-        $scope.items.push(last + i);
+    var last = $scope.items[$scope.items.length - 1];
+    for(var i = 1; i <= $scope.count; i++) {
+      if($scope.items.length < $scope.total){
+        $scope.items.push((last || 0) + i);
       }
     }
-
   };
-});
 ```
 
 ## Promise Support
@@ -74,33 +72,37 @@ until the promise returns to call the `load-more` method again.
 ```javascript
 var myApp = angular.module('myApp', ['infinite-scroll']);
 
-var MyController = function($scope, $q){
+var MyController = function($scope, $q) {
   $scope.items = [];
-  $scope.container = "container";
-  var last = 0;
-  var total = 1000;
+  $scope.distance = 80;
+  $scope.container = 'container';
+  $scope.total = 200;
+  $scope.count = 20
+  $scope.delay = 500;
 
   $scope.load = function() {
     // Return a promise
     return $q(function(resolve, reject){
       setTimeout(function(){
+        var last = $scope.items[$scope.items.length - 1];
 
         // Load items from memory or ajax request
-        for(var i = 1; i <= 20; i++) {
-          if($scope.items.length < total){
-            $scope.items.push(last + i);
+        for(var i = 1; i <= $scope.count; i++) {
+          if($scope.items.length < $scope.total){
+            $scope.items.push((last || 0) + i);
 
             // Resolve promise to continue infinite scrolling
             resolve();
           }
         }
-
-      }, 500);
+      }, $scope.delay);
     });
 
   };
+};
 
-}
+MyController.$inject = ['$scope', '$q'];
+myApp.controller('MyController', MyController);
 ```
 
 ## Contributing
