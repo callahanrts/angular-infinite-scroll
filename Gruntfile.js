@@ -34,13 +34,10 @@ module.exports = function(grunt) {
   })
 
   // Load the plugin that provides the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-protractor-webdriver');
 
   // Default task(s).
-  //grunt.registerTask('default', ['uglify']);
   grunt.registerTask('test', ['protractor_webdriver', 'protractor']);
 
 };
