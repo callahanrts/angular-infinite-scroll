@@ -1,8 +1,6 @@
 # Angular Infinite Scrolling
 [![Build Status](https://travis-ci.org/callahanrts/angular-infinite-scrolling.svg?branch=master)](https://travis-ci.org/callahanrts/angular-infinite-scrolling)
 
-[Demos](http://codycallahan.com/angular-infinite-scrolling)
-
 ## Installation
 [Bower](http://bower.io/) `bower install  angular-infinite-scrolling`
 
